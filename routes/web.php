@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ShopifyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\ProductController::class, 'index'])->middleware(['verify.shopify'])->name('home');
 
+Route::get('/hi', [ShopifyController::class, 'getDetails'])->name('hi')->middleware(['verify.shopify']);
 
-Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index'])
-    ->middleware(['verify.shopify'])->name('product.index');
+
+// Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index'])
+//     ->middleware(['verify.shopify'])->name('product.index');
