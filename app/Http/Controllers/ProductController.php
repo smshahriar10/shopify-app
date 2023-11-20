@@ -11,7 +11,6 @@ class ProductController extends Controller
         $shop = Auth::user();
         $data = $shop->api()->rest('GET', '/admin/products.json');
         $products = $data['body']->products;
-        dd($products);
-        return view('product.index', compact('products'));
+        return view('welcome', compact('products'));
     }
 }
