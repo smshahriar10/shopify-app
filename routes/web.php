@@ -1,7 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ShopifyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +15,19 @@ use App\Http\Controllers\ShopifyController;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\ProductController::class, 'index'])->middleware(['verify.shopify'])->name('home');
+Route::get('/', function () {
+    return view('welcome');
+})->middleware(['verify.shopify'])->name('home');
 
-Route::get('/hi', [ShopifyController::class, 'getDetails'])->name('hi')->middleware(['verify.shopify']);
 
+Route::get('/products',[\App\Http\Controllers\ProductController::class, 'index'])
+    ->middleware(['verify.shopify'])->name('product.index');
 
-// Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index'])
-//     ->middleware(['verify.shopify'])->name('product.index');
+Route::get('/groups', [\App\Http\Controllers\FaqController::class, 'groupIndex'])
+	->middleware(['verify.shopify'])
+    ->name('group.index');
+
+Route::post('/groups', [\App\Http\Controllers\FaqController::class, 'groupStore'])
+    ->middleware(['verify.shopify'])
+    ->name('group.store');
+
