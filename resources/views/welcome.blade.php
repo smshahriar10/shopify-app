@@ -1,15 +1,13 @@
-@extends('shopify-app::layouts.default')
-
-@section('content')
-    <h1>Home</h1>
-        <a href="{{ URL::tokenRoute('group.index') }}">All group</a>
-
-@endsection
-
-@section('scripts')
-    @parent
-
-    <script>
-        actions.TitleBar.create(app, { title: 'Home Page' });
-    </script>
-@endsection
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  @vite('resources/css/app.css')
+</head>
+<body>
+  <h1 class="text-3xl font-bold underline bg-red-700">
+    Hello world love great!
+  </h1>
+</body>
+</html>
