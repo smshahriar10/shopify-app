@@ -31,4 +31,21 @@ class FaqController extends Controller
         return Redirect::tokenRedirect('group.index'); //redirect not working
 
     }
+
+    public function collectionProducts($collectionId) {
+        $shop = Auth::user();
+
+        // Fetch products for the specified collection
+        $response = $shop->api()->rest('GET', '/admin/api/2023-10/products.json', ['collection_id' => $collectionId]);
+
+        if (!empty($response['errors'])) {
+            return back()->withErrors('Error fetching products: ' . $response['errors']);
+        }
+
+        $products = $response['body']->products;
+
+        // Show a view with the products
+        return view('collection_products', compact('products'));
+    }
+
 }
